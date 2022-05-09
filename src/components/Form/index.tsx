@@ -61,9 +61,11 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
     try {
       await api.post('/feedbacks', {
         type: feedbackType,
-        screenshot: `data:image/png;base64, ${screenshotBase64}`,
+        screenshot: `data:image/png;base64,${screenshotBase64}`,
         comment
       })
+
+      console.log(`data:image/png:base64,${screenshotBase64}`);
 
       onFeedbackSent()
     } catch (error) {
@@ -80,7 +82,7 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
         >
           <ArrowLeft
             size={24}
-            weight="bold"
+            weight="bold"            
             color={theme.colors.text_secondary}
           />
         </TouchableOpacity>
@@ -106,7 +108,7 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
         <ScreenshotButton
           onTakeShot={handleScreenshot}
           onRemoveShot={handleScreenshotRemove}
-          screeshot={screenshot}
+          screenshot={screenshot}
         />
 
         <Button
